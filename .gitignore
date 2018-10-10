@@ -24,8 +24,7 @@ ExportedObj/
 *.pdb
 *.opendb
 
-# Adding PNGs as Github can be funny with these sometimes
-*.png
+
 
 # Unity3D generated meta files
 *.pidb.meta
