@@ -12,10 +12,19 @@ public class SpiderWeb : MonoBehaviour
 
     public Material lineMaterial;
 
-    List<LineRenderer> lines;
+    [HideInInspector]
+    public List<LineRenderer> lines;
 
-    void Start()
+    public void CreateWeb()
     {
+        if (lines != null)
+        {
+            foreach (LineRenderer line in lines)
+            {
+                DestroyImmediate(line.gameObject);
+            }
+        }
+
         lines = new List<LineRenderer>();
 
         for (int i = 0; i < sections; i++)
@@ -26,6 +35,7 @@ public class SpiderWeb : MonoBehaviour
                     Vector3.zero,
                     PolarToCartesian(segments * radiusPerSegment, i * degreesPerSection)
                 });
+            lines.Add(temp);
         }
 
         for (int s = 1; s <= segments; s++)
@@ -37,9 +47,10 @@ public class SpiderWeb : MonoBehaviour
             {
                 temp.SetPosition(i, PolarToCartesian(s * radiusPerSegment, i * degreesPerSection));
             }
+            lines.Add(temp);
         }
 
-        transform.Rotate(0, 0, 90, Space.Self);
+        transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
     }
     
     Vector2 PolarToCartesian(float r, float angle, bool radians = false)
