@@ -410,7 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiusPerSegment: 0.25
   segments: 21
-  sections: 13
+  sections: 7
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &2115321865
 GameObject:
