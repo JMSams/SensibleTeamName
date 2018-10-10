@@ -10,6 +10,7 @@ public class SpiderWeb : MonoBehaviour
     public int sections = 8;
     float degreesPerSection { get { return 360f / sections; } }
 
+    public float lineWidth = 0.02f;
     public Material lineMaterial;
 
     [HideInInspector]
@@ -50,7 +51,7 @@ public class SpiderWeb : MonoBehaviour
             lines.Add(temp);
         }
 
-        transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+        transform.localRotation = Quaternion.Euler(0f, 0f, -90f);
     }
     
     Vector2 PolarToCartesian(float r, float angle, bool radians = false)
@@ -69,8 +70,8 @@ public class SpiderWeb : MonoBehaviour
         LineRenderer temp = new GameObject("WebSegment").AddComponent<LineRenderer>();
         temp.transform.SetParent(this.transform);
         temp.transform.localPosition = Vector3.zero;
-        temp.startWidth = 0.05f;
-        temp.endWidth = 0.05f;
+        temp.startWidth = lineWidth;
+        temp.endWidth = lineWidth;
         temp.material = lineMaterial;
         temp.useWorldSpace = false;
         return temp;

@@ -8,11 +8,14 @@ public class SpiderWebEditor : Editor
 {
     SpiderWeb t { get { return target as SpiderWeb; } }
 
-    bool autoUpdate = true;
+    static bool autoUpdate = true;
 
     public override void OnInspectorGUI()
     {
-        autoUpdate = EditorGUILayout.Toggle("Auto Update", autoUpdate);
+        bool newAutoUpdate = EditorGUILayout.Toggle("Auto Update", autoUpdate);
+        if (newAutoUpdate != autoUpdate && newAutoUpdate)
+            t.CreateWeb();
+        autoUpdate = newAutoUpdate;
 
         if (t.lines == null)
             t.CreateWeb();
