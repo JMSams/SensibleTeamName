@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe81468f99eccf4e9657be7dbb841ca, type: 3}
+  m_Name: Node 000
+  m_EditorClassIdentifier: 
+  text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam efficitur, nisl malesuada condimentum consectetur, ipsum lacus eleifend augue, quis congue odio lorem sed nibh. Nulla nibh massa, euismod non posuere efficitur, dapibus in mauris.
+  choices:
+  - {fileID: 11400000, guid: 2110080e9f9d1ec47abfd7421543bb37, type: 2}
+  - {fileID: 11400000, guid: 700e7497088faae4da2e7b3f8d85be84, type: 2}
