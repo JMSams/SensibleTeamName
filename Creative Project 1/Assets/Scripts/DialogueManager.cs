@@ -1,39 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public DialogueNode startNode;
 
-    public TMPro.TextMeshProUGUI dialogueBox;
+    public CanvasGroup dialogueBox;
+    public TMPro.TextMeshProUGUI dialogueTextField;
+
+    public FlySpawner flySpawner;
+
+    [Range(0.001f, 0.5f)]
+    public float fadeDelay = 0.1f;
 
     DialogueNode currentNode;
 
-    void Start()
+    IEnumerator Start()
     {
+        dialogueBox.alpha = 0;
+        yield return new WaitForSeconds(1.5f);
         TriggerNextDialogue(startNode);
     }
 
     public void TriggerNextDialogue(DialogueNode node)
     {
         currentNode = node;
-        StartCoroutine(TypeWriter(node.text));
+        StartCoroutine(FadeIn());
     }
     public void TriggerNextDialogue(int choice)
     {
         currentNode = currentNode.choices[choice];
-        StartCoroutine(TypeWriter(currentNode.text));
+        StartCoroutine(FadeIn());
     }
 
-    IEnumerator TypeWriter(string text, float secondsPerChar = 0.05f)
+    public void CloseDialogue()
     {
-        dialogueBox.text = "";
+        StartCoroutine(FadeOut());
+    }
 
-        for (int i = 0; i < text.Length; i++)
+    IEnumerator FadeIn()
+    {
+        dialogueTextField.text = currentNode.text;
+        for (float a = 0.0f; a <= 1.0f; a += 0.025f)
         {
-            dialogueBox.text += text[i];
-            yield return new WaitForSeconds(secondsPerChar);
+            dialogueBox.alpha = a;
+            yield return new WaitForSeconds(fadeDelay);
         }
+        dialogueBox.alpha = 1;
+    }
+    IEnumerator FadeOut()
+    {
+        dialogueTextField.text = currentNode.text;
+        for (float a = 1.0f; a >= 0.0f; a -= 0.025f)
+        {
+            dialogueBox.alpha = a;
+            yield return new WaitForSeconds(fadeDelay);
+        }
+        dialogueBox.alpha = 0;
     }
 }

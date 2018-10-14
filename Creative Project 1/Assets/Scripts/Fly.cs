@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public FlySpawner spawner;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [HideInInspector]
+    public int id;
+
+    //TODO: OnClick: DialogueManager.SelectChoice(id)
 }
